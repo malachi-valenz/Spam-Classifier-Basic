@@ -1,5 +1,6 @@
 import pandas as pd
 import string
+import pickle
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
@@ -35,3 +36,12 @@ y_pred = model.predict(X_test)
 
 # Display performance metrics (precision, recall, f1-score)
 print(classification_report(y_test, y_pred))
+
+# Save the model and vectorizer
+with open('model.pkl', 'wb') as f:
+    pickle.dump(model, f)
+
+with open('vectorizer.pkl', 'wb') as f:
+    pickle.dump(vectorizer, f)
+
+print("Model Saved!")
